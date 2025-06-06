@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ingreso - Universidad Kennedy</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="pagina-ingreso">  
+    <header>
+       <img src="images/logo-uk.png" alt="Logo Universidad Kennedy" class="logo-header">
+        <h1>Formulario de Ingreso</h1>
+    </header>
+   <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="ingresos.html">Ingresos</a></li>
+            <li><a href="novedades.html">Novedades</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div class="form-container">
+            <h2 class="form-title">Complete sus datos</h2>
+            <form id="ingresoForm" onsubmit="return validarFormulario()">
+                 <div class="form-group">
+                <label for="carrera">Carrera de Interés<span class="required">*</span></label>
+                <select id="carrera" name="carrera" required>
+                    <option value="">Seleccione una carrera</option>
+                    <option value="ingenieria">Ingeniería en Sistemas</option>
+                    <option value="medicina">Medicina</option>
+                    <option value="derecho">Derecho</option>
+                    <option value="psicologia">Psicología</option>
+                    <option value="administracion">Administración de Empresas</option>
+                    <option value="arquitectura">Arquitectura</option>
+                </select>
+                <div class="error-message" id="carrera-error">Por favor seleccione una carrera</div>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre<span class="required">*</span></label>
+                <input type="text" id="nombre" name="nombre" required>
+                <div class="error-message" id="nombre-error">Por favor ingrese su nombre</div>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido<span class="required">*</span></label>
+                <input type="text" id="apellido" name="apellido" required>
+                <div class="error-message" id="apellido-error">Por favor ingrese su apellido</div>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento<span class="required">*</span></label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                <div class="error-message" id="fecha-error">Por favor ingrese su fecha de nacimiento</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico<span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error">Por favor ingrese un correo electrónico válido</div>
+            </div>
+
+            <button type="submit">Enviar Solicitud</button>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            let isValid = true;
+            const campos = ['carrera', 'nombre', 'apellido', 'fechaNacimiento', 'email'];
+
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+
+            campos.forEach(campo => {
+                const elemento = document.getElementById(campo);
+                const errorElement = document.getElementById(campo + '-error');
+
+                if (!elemento.value) {
+                    errorElement.style.display = 'block';
+                    isValid = false;
+                }
+            });
+
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Formulario enviado correctamente');
+            }
+
+            return false;
+        }
+    </script>
+            </form>
+        </div>
+    </div>
+   
+<footer>
+    <div class="footer-content">
+       
+    <div class="footer-logo">
+    <img src="images/logo-uk.png" alt="Logo Universidad Kennedy">
+</div>
+        
+      
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <ul>
+                <li>📍 Dirección: Peru 1156 </li>
+                <li>📞 Teléfono: (123) 456-7890</li>
+                <li>✉️ Email: alumnos@kennedy.edu.ar</li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+                <li><a href="#">Admisiones</a></li>
+                <li><a href="#">Biblioteca</a></li>
+                <li><a href="#">Campus Virtual</a></li>
+                <li><a href="#">Calendario Académico</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Redes Sociales</h3>
+            <div class="social-icons">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2024 Manuel - Universidad Kennedy | Todos los derechos reservados</p>
+    </div>
+</footer>
+
+</body>
+</html>
